@@ -15,9 +15,9 @@ return new class extends Migration
             $table->string('identifier',8);
             $table->string('title',50);
             $table->string('url',500);
-            $table->integer('access');
-            $table->ipAddress('ip');
-            $table->string('user_agent',500);
+            $table->integer('access')->nullable()->default(0);
+            $table->ipAddress('ip')->nullable();
+            $table->string('user_agent',500)->nullable();
             $table->timestamps();
         });
     }
