@@ -21,6 +21,7 @@ class ShortenerResource extends JsonResource
             'shortenedUrl' => env('APP_URL').$this->identifier,
             'title' => $this->title,
             'url' => $this->url,
+            'access' => $this->access,
             'created_at' => Carbon::make($this->created_at)->format('Y-m-d H:i:s'),
         ];
     }
