@@ -18,3 +18,7 @@ link shortener
 ## cron
  - php artisan schedule:run
 
+## frontend
+ npm run dev
+ node -v => v19.9.0
+
