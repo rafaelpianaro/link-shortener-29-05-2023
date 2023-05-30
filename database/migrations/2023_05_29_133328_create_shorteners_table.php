@@ -12,12 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('shorteners', function (Blueprint $table) {
-            $table->string('identifier',8);
+            $table->string('identifier',8)->primary();
             $table->string('title',50);
             $table->string('url',500);
             $table->integer('access')->nullable()->default(0);
-            $table->ipAddress('ip')->nullable();
-            $table->string('user_agent',500)->nullable();
             $table->timestamps();
         });
     }
