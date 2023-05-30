@@ -23,7 +23,7 @@ class ShortenerController extends Controller
             $data->fill($data->toArray());
 		    $data->save();
 
-            Shortener::where('identifier', $identifier)->increment('access');
+            Shortener::where('identifier', $identifier)->where(fn($q) => $q->getModel()->timestamps = false)->increment('access');
 
             return redirect($shortener['url']);
         }
