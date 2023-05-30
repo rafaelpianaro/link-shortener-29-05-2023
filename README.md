@@ -14,3 +14,7 @@ link shortener
 
 ## Infos
  - http://localhost:8010/info.php
+
+## cron
+ - php artisan schedule:run
+
