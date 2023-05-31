@@ -16,7 +16,8 @@ return new class extends Migration
             $table->ipAddress('ip')->nullable();
             $table->string('user_agent',500)->nullable();
             $table->string('shortener_identifier')->nullable();
-            $table->foreign('shortener_identifier')->references('identifier')->on('shorteners');
+            $table->foreign('shortener_identifier')->references('identifier')->on('shorteners')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

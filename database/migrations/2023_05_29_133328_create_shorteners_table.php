@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title',50);
             $table->string('url',500);
             $table->integer('access')->nullable()->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
