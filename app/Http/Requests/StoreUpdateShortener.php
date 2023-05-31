@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -24,12 +25,12 @@ class StoreUpdateShortener extends FormRequest
     public function rules(): array
     {
         $rules =  [
-            // 'identifier' => [
-            //     'required',
-            //     'min:6',
-            //     'max:8',
-            //     'unique:shorteners'
-            // ],
+            'identifier' => [
+                // Rule::unique('shorteners')->where(fn (Builder $query) => $query->whereNull('deleted_at'))
+                // Rule::unique('shorteners')->whereNull('deleted_at')
+                // 'required', Rule::unique('shorteners')->whereNull('deleted_at')
+                Rule::unique('shorteners')->where(function($query){return $query->where('deleted_at','=',null);})
+            ],
             'url' => [
                 'required',
                 'min:5',
@@ -42,11 +43,11 @@ class StoreUpdateShortener extends FormRequest
             ],
         ];
         // TODO
-        // if ($this->method() === 'PUT' || $this->method() === 'PATCH') {
-        //     $rules['identifier'] = [
-        //         Rule::unique('shorteners')->ignore($this->shortener ?? $this->identifier) 
-        //     ];
-        // }
+        if ($this->method() === 'PUT' || $this->method() === 'PATCH') {
+            $rules['identifier'] = [
+                Rule::unique('shorteners')->ignore($this->shortener ?? $this->identifier) 
+            ];
+        }
 
         return $rules;
     }
@@ -70,7 +71,7 @@ class StoreUpdateShortener extends FormRequest
 
     public function withValidator($validator)
     {
-        $validator->sometimes('identifier', 'required|min:6|max:8|unique:shorteners', function ($input) {
+        $validator->sometimes('identifier', 'required|min:6|max:8', function ($input) {
             if(isset($input['identifier']))
 				return true;
 			else
