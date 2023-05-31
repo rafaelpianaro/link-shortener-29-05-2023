@@ -51,7 +51,14 @@ class ShortenerController extends Controller
      */
     public function show(string $id)
     {
-        //
+        if (!$shortener = $this->service->findOne($id)) {
+            return response()->json([
+                'error' => 'Not Found'
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        //presenter
+        return new ShortenerResource(($shortener));
     }
 
     /**
