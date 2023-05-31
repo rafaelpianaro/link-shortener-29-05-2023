@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('access_details', function (Blueprint $table) {
             // $table->increments('id');
+            $table->string('shortener_identifier',8);
             $table->ipAddress('ip')->nullable();
             $table->string('user_agent',500)->nullable();
-            $table->string('shortener_identifier')->nullable();
-            $table->foreign('shortener_identifier')->references('identifier')->on('shorteners')->onDelete('cascade');
+            // $table->string('shortener_identifier')->nullable();
+            // $table->foreign('shortener_identifier')->references('identifier')->on('shorteners')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

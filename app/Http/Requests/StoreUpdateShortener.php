@@ -42,11 +42,11 @@ class StoreUpdateShortener extends FormRequest
             ],
         ];
         // TODO
-        if ($this->method() === 'PUT') {
-            $rules['identifier'] = [
-                Rule::unique('shorteners')->ignore($this->shortener ?? $this->identifier) 
-            ];
-        }
+        // if ($this->method() === 'PUT' || $this->method() === 'PATCH') {
+        //     $rules['identifier'] = [
+        //         Rule::unique('shorteners')->ignore($this->shortener ?? $this->identifier) 
+        //     ];
+        // }
 
         return $rules;
     }

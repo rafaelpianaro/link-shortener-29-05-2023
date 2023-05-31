@@ -48,8 +48,8 @@ class ShortenerEloquentORM implements ShortenerRepositoryInterface
     public function new(CreateShortenerDTO $dto): stdClass
     {
         $shortener = $this->model->create((array)$dto);
-        $m = $this->model->first();
-        $m->access_details()->create((array)$dto);
+        // $m = $this->model->first();
+        // $m->access_details()->create((array)$dto);
 
         return (object) $shortener->toArray();
     }

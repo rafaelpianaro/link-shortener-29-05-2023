@@ -26,9 +26,4 @@ class Shortener extends Model
     {
         return $this->hasMany(AccessDetails::class, 'shortener_identifier');
     }
-
-    public function remove_access_details($shortener_identifier): void
-    {
-        $this->detach($shortener_identifier);
-    }
 }

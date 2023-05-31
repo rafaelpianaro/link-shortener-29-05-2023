@@ -17,9 +17,9 @@ class ShortenerController extends Controller
         } else {
             // $data = AccessDetails::where('shortener_identifier', $identifier)->first();
             $data = new AccessDetails();
+            $data['shortener_identifier'] = $identifier;
             $data['ip'] = $request->ip();
             $data['user_agent'] = $request->server('HTTP_USER_AGENT');
-            $data['shortener_identifier'] = $identifier;
             $data->fill($data->toArray());
 		    $data->save();
 
